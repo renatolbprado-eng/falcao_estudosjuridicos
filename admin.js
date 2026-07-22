@@ -18,7 +18,6 @@ function getLegalData() {
     const fileContent = fs.readFileSync(LEGAL_DATA_PATH, 'utf-8');
     const match = fileContent.match(/export const LEGAL_DATA = ([\s\S]*?);$/m);
     if (match && match[1]) {
-      // Use Function constructor to safely evaluate the JS object literal
       const dataObj = new Function(`return ${match[1]}`)();
       return dataObj;
     }
@@ -112,7 +111,6 @@ export const SUBJECT_GROUPS = [
 
 // Server logic
 const server = http.createServer(async (req, res) => {
-  // Enable CORS for local convenience
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -125,7 +123,6 @@ const server = http.createServer(async (req, res) => {
 
   const url = new URL(req.url, `http://localhost:${PORT}`);
 
-  // API Endpoints
   if (url.pathname === '/api/data' && req.method === 'GET') {
     const data = getLegalData();
     res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -155,12 +152,10 @@ const server = http.createServer(async (req, res) => {
           data[subjectId][sector] = [];
         }
 
-        // Generate unique ID if not present
         if (!itemData.id) {
           itemData.id = `${subjectId}-${Date.now().toString(36)}`;
         }
 
-        // Push new item
         data[subjectId][sector].push(itemData);
         saveLegalData(data);
 
@@ -205,8 +200,7 @@ const server = http.createServer(async (req, res) => {
         const { commitMessage } = JSON.parse(body || '{}');
         const msg = commitMessage || 'feat: adicionada nova norma via painel local';
 
-        // Run git commands sequentially
-        const { stdout: statusOut } = await execAsync('git add .');
+        await execAsync('git add .');
         const { stdout: commitOut } = await execAsync(`git commit -m "${msg.replace(/"/g, '\\"')}"`);
         const { stdout: pushOut } = await execAsync('git push origin main');
 
@@ -220,7 +214,6 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // Serve Admin Visual Portal HTML
   if (url.pathname === '/' || url.pathname === '/index.html') {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(getAdminHTML());
@@ -238,8 +231,8 @@ server.listen(PORT, () => {
   console.log(`📌 Acesse no seu navegador: http://localhost:${PORT}`);
   console.log(`==================================================\n`);
   
-  // Auto open browser on Windows
-  exec(`start http://localhost:${PORT}`).catch(() => {});
+  // Safe command execution with callback for opening browser on Windows
+  exec(`start http://localhost:${PORT}`, () => {});
 });
 
 function getAdminHTML() {
@@ -262,7 +255,7 @@ function getAdminHTML() {
   <header class="border-b border-emerald-500/30 bg-slate-950/90 backdrop-blur sticky top-0 z-50 py-4 px-6">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-500/40 p-1 flex items-center justify-center">
+        <div class="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-500/40 p-1 flex items-center justify-center">
           <img src="/governo_logo.png" alt="Logo" class="w-8 h-8 object-contain" onerror="this.style.display='none'">
         </div>
         <div>
@@ -414,7 +407,6 @@ function getAdminHTML() {
   <script>
     let globalData = {};
 
-    // Set today's date default
     document.getElementById('date').value = new Date().toISOString().split('T')[0];
 
     function toggleSectorFields() {
@@ -585,7 +577,6 @@ function getAdminHTML() {
       setTimeout(() => box.classList.add('hidden'), 5000);
     }
 
-    // Initial load
     loadData();
   </script>
 </body>
