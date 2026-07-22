@@ -9,32 +9,32 @@ export default function Footer() {
           
           {/* Left Info */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-blue-900 flex items-center justify-center text-amber-400 font-bold">
-              <Scale className="w-4 h-4" />
+            <div className="w-9 h-9 rounded-xl bg-blue-900 flex items-center justify-center text-amber-400 font-bold shadow-md">
+              <Scale className="w-5 h-5" />
             </div>
             <div>
               <p className="text-sm font-bold text-slate-800 dark:text-slate-200 font-serif-legal">
-                Falcão - Estudos Jurídicos
+                Governo Federal
               </p>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Portal de Legislação e Jurisprudência para o RP do Governo Federal
+                Uma realização <strong>Organização Governamental</strong> e <strong>Nova Paraná RP</strong>
               </p>
             </div>
           </div>
 
           {/* Center Integration Tag */}
           <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
-            <Globe className="w-3.5 h-3.5 text-blue-500" />
-            <span>Integrável com a instância <strong>GovernoFederal</strong></span>
+            <Globe className="w-3.5 h-3.5 text-emerald-500" />
+            <span>Falcão - Estudos Jurídicos</span>
           </div>
 
-          {/* Right Git & Render status */}
+          {/* Right Git */}
           <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
             <a
               href="https://github.com/renatolbprado-eng/falcao_estudosjuridicos.git"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 hover:text-blue-600 dark:hover:text-blue-400 transition"
+              className="flex items-center gap-1.5 hover:text-emerald-500 transition"
             >
               <Github className="w-4 h-4" />
               <span>Repositório Git</span>
@@ -45,7 +45,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/60 text-center text-[11px] text-slate-400">
-          © {new Date().getFullYear()} Falcão Estudos Jurídicos. Aplicação Estática Pronta para Publicação no Render.
+          © {new Date().getFullYear()} Governo Federal • Um projeto de Nova Paraná RP. Publicação estática no Render.
         </div>
       </div>
     </footer>

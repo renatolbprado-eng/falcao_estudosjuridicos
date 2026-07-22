@@ -6,7 +6,7 @@ import ItemList from './components/ItemList';
 import DetailModal from './components/DetailModal';
 import Footer from './components/Footer';
 import { SUBJECT_GROUPS, LEGAL_DATA } from './data/legalData';
-import { Search, Sparkles, BookOpen, Shield, ArrowRight } from 'lucide-react';
+import { Search, Sparkles, BookOpen, Shield, ArrowRight, Award } from 'lucide-react';
 
 export default function App() {
   const [activeSubjectId, setActiveSubjectId] = useState('civil');
@@ -34,7 +34,7 @@ export default function App() {
   // Current sector list before search filter
   const currentSectorItems = activeSector === 'leis_normas' ? lawsList : jurisList;
 
-  // Filter items if search term is active across current subject OR across all subjects if searching global
+  // Filter items if search term is active across current subject
   const filteredItems = currentSectorItems.filter((item) => {
     if (!searchTerm.trim()) return true;
     const term = searchTerm.toLowerCase();
@@ -63,33 +63,56 @@ export default function App() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
         {/* Banner Hero */}
-        <div className="mb-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 text-white shadow-xl relative overflow-hidden border border-amber-500/20">
-          <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="mb-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white shadow-2xl relative overflow-hidden border border-emerald-500/30">
+          <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
           
-          <div className="relative z-10 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Base Jurídica RP • Governo Federal</span>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-serif-legal mb-2">
-              Falcão - Estudos Jurídicos
-            </h1>
-            
-            <p className="text-sm text-slate-300 leading-relaxed mb-4">
-              Navegue com facilidade entre as normas, decretos, leis ordinárias e jurisprudência dos órgãos do Governo Federal. Selecione um grupo abaixo para consultar o ordenamento jurídico.
-            </p>
+            {/* Left Column: Text */}
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-3">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Tema: Falcão - Estudos Jurídicos</span>
+              </div>
+              
+              <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight font-serif-legal mb-2 text-white">
+                Falcão - Estudos Jurídicos
+              </h1>
+              
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-sm sm:text-base font-bold text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-xl border border-emerald-500/40">
+                  Um projeto de Nova Paraná RP
+                </span>
+              </div>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs text-amber-200 font-medium">
-              <span className="flex items-center gap-1.5">
-                <BookOpen className="w-4 h-4 text-amber-400" />
-                7 Matérias Principais
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Shield className="w-4 h-4 text-amber-400" />
-                Setores: Leis & Jurisprudência
-              </span>
+              <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                Portal oficial do Governo Federal para consulta de leis, códigos, decretos e precedentes jurisprudenciais no âmbito do Roleplay.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300 font-medium">
+                <span className="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
+                  <BookOpen className="w-4 h-4 text-emerald-400" />
+                  7 Matérias Principais
+                </span>
+                <span className="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
+                  <Shield className="w-4 h-4 text-emerald-400" />
+                  Leis, Normas & Jurisprudência
+                </span>
+              </div>
             </div>
+
+            {/* Right Column: Nova Paraná Logo Image */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="relative group max-w-sm sm:max-w-md">
+                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-green-600 rounded-2xl blur-md opacity-30 group-hover:opacity-60 transition duration-300"></div>
+                <img
+                  src="/nova_parana.png"
+                  alt="Nova Paraná RP"
+                  className="relative rounded-2xl border-2 border-emerald-500/40 shadow-2xl object-cover w-full max-h-56 sm:max-h-64 transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+              </div>
+            </div>
+
           </div>
         </div>
 
