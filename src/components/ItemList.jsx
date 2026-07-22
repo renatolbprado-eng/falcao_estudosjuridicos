@@ -4,16 +4,16 @@ import { Calendar, Tag, ChevronRight, FileText, Scale, CheckCircle2 } from 'luci
 export default function ItemList({ items, sector, onSelectItem, activeSubjectTitle }) {
   if (!items || items.length === 0) {
     return (
-      <div className="text-center py-16 px-4 bg-white dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700">
-        <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mx-auto mb-3">
+      <div className="text-center py-16 px-4 bg-slate-900/40 rounded-2xl border border-dashed border-slate-800">
+        <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-3 border border-emerald-500/20">
           <Scale className="w-6 h-6" />
         </div>
-        <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-1 font-serif-legal">
-          Nenhum registro encontrado
+        <h3 className="text-base font-bold text-slate-200 mb-1 font-serif-legal">
+          Nenhum registro cadastrado
         </h3>
-        <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-          Não foram encontrados documentos em <strong>{activeSubjectTitle}</strong> para o setor de{' '}
-          <strong>{sector === 'leis_normas' ? 'Leis e Normas' : 'Jurisprudência'}</strong> com os filtros atuais.
+        <p className="text-xs text-slate-400 max-w-md mx-auto">
+          Não há documentos em <strong>{activeSubjectTitle}</strong> no setor de{' '}
+          <strong>{sector === 'leis_normas' ? 'Leis e Normas' : 'Jurisprudência'}</strong> no momento.
         </p>
       </div>
     );
@@ -40,22 +40,22 @@ export default function ItemList({ items, sector, onSelectItem, activeSubjectTit
                   {item.type}
                 </span>
 
-                <span className="text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/80 px-2.5 py-1 rounded-lg">
+                <span className="text-xs font-bold text-slate-300 bg-slate-800 border border-slate-700 px-2.5 py-1 rounded-lg">
                   {item.number}
                 </span>
 
                 {item.status && (
                   <span className="text-xs font-medium px-2.5 py-1 rounded-lg badge-status flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                    <CheckCircle2 className="w-3 h-3 text-emerald-400" />
                     {item.status}
                   </span>
                 )}
               </div>
 
               {/* Date / Relator info */}
-              <div className="flex items-center gap-3 text-xs text-slate-400 dark:text-slate-400">
+              <div className="flex items-center gap-3 text-xs text-slate-400">
                 {item.relator && (
-                  <span className="text-amber-600 dark:text-amber-400 font-medium">
+                  <span className="text-emerald-400 font-medium">
                     Relator: {item.relator}
                   </span>
                 )}
@@ -67,29 +67,29 @@ export default function ItemList({ items, sector, onSelectItem, activeSubjectTit
             </div>
 
             {/* Title & Ementa Summary */}
-            <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors font-serif-legal">
+            <h3 className="text-lg font-bold text-slate-100 mb-2 group-hover:text-emerald-400 transition-colors font-serif-legal">
               {item.title}
             </h3>
 
-            <p className="text-sm text-slate-600 dark:text-slate-300 mb-4 line-clamp-2">
+            <p className="text-sm text-slate-300 mb-4 line-clamp-2">
               {item.summary}
             </p>
 
             {/* Tags & Action Button */}
-            <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-700/60">
+            <div className="flex items-center justify-between pt-3 border-t border-slate-800">
               <div className="flex flex-wrap items-center gap-1.5">
-                <Tag className="w-3.5 h-3.5 text-slate-400 mr-1" />
+                <Tag className="w-3.5 h-3.5 text-slate-500 mr-1" />
                 {item.tags?.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="text-[11px] px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-700/60 text-slate-600 dark:text-slate-300"
+                    className="text-[11px] px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700/60"
                   >
                     #{tag}
                   </span>
                 ))}
               </div>
 
-              <div className="flex items-center gap-1 text-xs font-bold text-blue-800 dark:text-blue-400 group-hover:translate-x-1 transition-transform">
+              <div className="flex items-center gap-1 text-xs font-bold text-emerald-400 group-hover:translate-x-1 transition-transform">
                 <span>Ver Texto Integral</span>
                 <ChevronRight className="w-4 h-4" />
               </div>
